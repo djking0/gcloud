@@ -84,6 +84,22 @@ $upload_latest_time = $row_upload_data['time'];
 		$insert_query_run = mysqli_query($con, $insert_query);
 		echo "user added to database";
 		echo mysqli_error($con);
+		
+		$upload_query = "
+			INSERT INTO old_upload(
+			email,
+			count,
+			time
+			) VALUES(
+			'$insert_email',
+			'1',
+			NOW()
+			)
+			";
+			
+			$run_upload_query = mysqli_query($con, $upload_query);
+			echo mysqli_error($con);
+			echo "insert upload record";
 	}
 	
 }
@@ -166,6 +182,23 @@ $download_latest_time = $row_download_data['time'];
 		";
 		$insert_query_run = mysqli_query($con, $insert_query);
 		echo mysqli_error($con);
+		
+		$download_query = "
+			INSERT INTO old_download(
+			email,
+			count,
+			time
+			) VALUES(
+			'$insert_email',
+			'1',
+			NOW()
+			)
+			";
+			
+			$run_download_query = mysqli_query($con, $download_query);
+			echo mysqli_error($con);
+			echo "inserted download record";
+				
 	}
 	
 }
